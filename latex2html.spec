@@ -1,10 +1,14 @@
+#
+#	Conditional build:
+# _without_tex - don't build documentation using LaTeX
+#
 %include	/usr/lib/rpm/macros.perl
 Summary:	LaTeX to html translator
 Summary(pl):	Konwerter z LaTeX-a do HTML
 Name:		latex2html
 Version:	2002
 %define	subv	1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Publishing/TeX
 Source0:	http://www.ctan.org/tex-archive/support/%{name}/%{name}-%{version}-%{subv}.tar.gz
@@ -18,8 +22,11 @@ BuildRequires:	netpbm-devel
 BuildRequires:	netpbm-progs
 BuildRequires:	perl >= 5.004
 BuildRequires:	rpm-perlprov
+%if %{!?_without_tex:1}0
 BuildRequires:	tetex-dvips
-BuildRequires:	tetex-latex
+BuildRequires:	tetex-format-latex
+BuildRequires:	tetex-makeindex
+%endif
 Requires:	ghostscript >= 4.03
 Requires:	giftrans
 Requires:	netpbm-progs
@@ -58,7 +65,7 @@ GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
 	--enable-pipes \
 	--enable-paths \
 	--enable-wrapper \
-	--with-perl=/usr/bin/perl \
+	--with-perl=%{__perl} \
 	--with-gs=/usr/bin/gs \
 	--with-rgb=/usr/X11R6/lib/X11/rgb.txt \
 	--with-texpath=/usr/share/texmf/tex/latex/%{name} \
@@ -66,14 +73,18 @@ GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
 
 %{__make}
 
+%if %{!?_without_tex:1}0
 # build foilhtml modules
-cd foilhtml && latex foilhtml.ins && cd ..
+cd foilhtml
+latex foilhtml.ins
+cd ..
 
 # build documentation
 TEXINPUTS="../:../texinputs:$TEXINPUTS"; export TEXINPUTS
 %{__make} -C docs manual.dvi
 %{__make} -C docs manual.dvi
 %{__make} -C docs manual.ps
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -101,7 +112,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS FAQ LICENSE README TODO docs/manual.ps
+%doc BUGS FAQ LICENSE README TODO %{!?_without_tex:docs/manual.ps}
 %attr(755,root,root) %{_bindir}/*
 %dir %{_shlibdir}
 %{_shlibdir}/[!c]*
