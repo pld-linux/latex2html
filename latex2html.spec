@@ -5,10 +5,6 @@ Version:	99.2beta8
 Release:	1
 License:	GPL
 Group:		Applications/Publishing/TeX
-Group(de):	Applikationen/Publizieren/TeX
-Group(es):	Aplicaciones/Editoración/TeX
-Group(pl):	Aplikacje/Publikowanie/TeX
-Group(pt_BR):	Aplicações/Editoração/TeX
 Source0:	http://www.ctan.org/tex-archive/support/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-perl.patch
 Patch1:		%{name}-tmp.patch
