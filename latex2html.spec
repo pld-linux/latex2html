@@ -20,7 +20,7 @@ Requires:       tetex-dvips >= 0.4
 Requires:       ghostscript >= 4.03
 Requires:       giftrans
 Requires:       libgr-progs >= 2.0.13
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildArch:	noarch
 
 %define		_libdir		%{_datadir}/%{name}
