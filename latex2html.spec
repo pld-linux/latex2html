@@ -19,7 +19,7 @@ Requires:	tetex-latex >= 0.4
 Requires:	tetex-dvips >= 0.4
 Requires:	ghostscript >= 4.03
 Requires:	giftrans
-Requires:	libgr-progs >= 2.0.13
+Requires:	netpbm-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildArch:	noarch
 
