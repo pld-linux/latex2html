@@ -3,7 +3,7 @@
 # _without_tex - don't build documentation using LaTeX
 #
 %include	/usr/lib/rpm/macros.perl
-Summary:	LaTeX to html translator
+Summary:	LaTeX to HTML translator
 Summary(pl):	Konwerter z LaTeX-a do HTML
 Name:		latex2html
 Version:	2002
@@ -20,7 +20,7 @@ BuildRequires:	ghostscript
 BuildRequires:	giftrans
 BuildRequires:	netpbm-devel
 BuildRequires:	netpbm-progs
-BuildRequires:	perl >= 5.004
+BuildRequires:	%{__perl}
 BuildRequires:	rpm-perlprov
 %if %{!?_without_tex:1}0
 BuildRequires:	tetex-dvips
@@ -31,7 +31,7 @@ BuildRequires:	tetex-makeindex
 Requires:	ghostscript >= 4.03
 Requires:	giftrans
 Requires:	netpbm-progs
-Requires:	perl >= 5.004
+Requires:	%{__perl}
 Requires:	tetex-dvips >= 0.4
 Requires:	tetex-latex >= 0.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
