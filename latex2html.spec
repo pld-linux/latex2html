@@ -74,7 +74,7 @@ cat << EOF >> l2hcfg.pm
 
 EOF
 
-make install 
+%{__make} install 
 install l2hcfg.pm.orig $RPM_BUILD_ROOT%{_libdir}/l2hcfg.pm
 ln -s	%{_libdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
 ln -s	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
