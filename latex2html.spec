@@ -1,18 +1,23 @@
 Summary:	latex to html translator
 Summary:	konwerter z latex'a do html'a
 Name:		latex2html
-Version:	99.2alpha13
+Version:	99.2beta8
 Release:	1
 License:	GPL
 Group:		Applications/Publishing/TeX
 Group(pl):	Aplikacje/Publikowanie/TeX
-Source0:	http://saftsack.fs.uni-bayreuth.de/~latex2ht/%{name}-%{version}.tar.gz
+Source0:	http://www.ctan.org/tex-archive/support/%{name}/%{name}-%{version}.tar.gz
 Patch0:		latex2html-perl.patch
 Patch1:		latex2html-tmp.patch
 URL:		http://www.xray.mpe.mpg.de/mailing-lists/latex2html/
 BuildRequires:	perl
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
+BuildRequires:	ghostscript
+BuildRequires:	tetex-latex
+BuildRequires:	tetex-dvips
+BuildRequires:	netpbm-progs
+BuildRequires:	giftrans
 Requires:	perl >= 5.004
 Requires:	ghostscript >= 4.03
 Requires:	tetex-latex >= 0.4
@@ -39,14 +44,18 @@ Generuje strony html oraz odpowiednie obrazki.
 %patch1 -p1
 
 %build
+GS_LIB=.:%{_datadir}/ghostscript/lib:%{_datadir}/fonts/type1; export GS_LIB
 %configure \
-	--enable-wrapper \
-	--enable-paths \
-	--enable-pipes \
-	--enable-png \
-	--enable-gif \
-	--enable-eps \
 	--enable-images \
+	--enable-pk \
+	--enable-eps \
+	--enable-gif \
+	--enable-png \
+	--enable-pipes \
+	--enable-paths \
+	--enable-wrapper \
+	--with-perl=%{_bindir}/perl \
+	--with-gs=%{_bindir}/gs \
 	--with-rgb=%{_prefix}/X11R6/lib/X11/rgb.txt \
 	--with-texpath=%{_datadir}/texmf/tex/latex/%{name} \
 	--with-iconpath=/icons/l2h/
@@ -66,29 +75,33 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/home/httpd/icons
 
-cp l2hcfg.pm l2hcfg.pm.orig
-cat << EOF >> l2hcfg.pm
+cp cfgcache.pm cfgcache.pm.orig
+cat << EOF >> cfgcache.pm
 
 \$cfg{'BINDIR'} = q'$RPM_BUILD_ROOT%{_bindir}';
 \$cfg{'LIBDIR'} = q'$RPM_BUILD_ROOT%{_libdir}';
+\$cfg{'TEXPATH'} = q'$RPM_BUILD_ROOT%{_datadir}/texmf/tex/latex/latex2html';      
 
 EOF
 
 %{__make} install 
-install l2hcfg.pm.orig $RPM_BUILD_ROOT%{_libdir}/l2hcfg.pm
+install  cfgcache.pm.orig $RPM_BUILD_ROOT%{_libdir}/cfgcache.pm
 ln -s	%{_libdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
 ln -s	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
 
 rm -rf	$RPM_BUILD_ROOT%{_libdir}/{docs,example,foilhtml/foilhtml.log}
 
-gzip -9nf FAQ README README.dvips dot.latex2html-init
+gzip -9nf BUGS FAQ LICENSE README TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -x /usr/bin/texhash ]; then
-/usr/bin/texhash
+if [ -x %{_bindir}/texhash ]; then
+%{_bindir}/texhash
+fi
+if [ -x %{_bindir}/mktexlsr ]; then
+%{_bindir}/mktexlsr
 fi
 
 %files
