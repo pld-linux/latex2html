@@ -1,0 +1,180 @@
+diff -urN latex2html.orig/FAQ latex2html/FAQ
+--- latex2html.orig/FAQ	Fri Sep  3 20:49:13 1999
++++ latex2html/FAQ	Fri Sep  3 20:52:28 1999
+@@ -425,7 +425,7 @@
+           shell scripts. This means that you may not be able to run any
+           of the above programs. In this case change the first line in
+           each of these programs from 
+-          #!/usr/local/bin/perl
++          #!/usr/bin/perl
+           to:
+ 
+ # *-*-perl-*-*
+@@ -777,7 +777,7 @@
+           case change the first line in each of these programs from
+           
+ 
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+    to
+           
+diff -urN latex2html.orig/README latex2html/README
+--- latex2html.orig/README	Fri Sep  3 20:49:13 1999
++++ latex2html/README	Fri Sep  3 20:54:44 1999
+@@ -165,7 +165,7 @@
+    programs. In this case change the first line in each of these programs
+    from 
+ 
+-   #!/usr/local/bin/perl
++   #!/usr/bin/perl
+ 
+    to 
+ 
+diff -urN latex2html.orig/configure-pstoimg latex2html/configure-pstoimg
+--- latex2html.orig/configure-pstoimg	Fri Sep  3 20:49:13 1999
++++ latex2html/configure-pstoimg	Fri Sep  3 20:50:00 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl -w
++#!/usr/bin/perl -w
+ #use diagnostics;
+ 
+ $LATEX2HTMLDIR="$ENV{'L2HMODULE'}/user"; # Inserted by installation script
+diff -urN latex2html.orig/cweb2html/cweb2html latex2html/cweb2html/cweb2html
+--- latex2html.orig/cweb2html/cweb2html	Fri Sep  3 20:49:13 1999
++++ latex2html/cweb2html/cweb2html	Fri Sep  3 20:50:42 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ ################################################################################
+ # Copyright 22.2.98 by Jens Lippmann (lippmann@cdc.informatik.th-darmstadt.de)
+diff -urN latex2html.orig/cweb2html/makemake.pl latex2html/cweb2html/makemake.pl
+--- latex2html.orig/cweb2html/makemake.pl	Fri Sep  3 20:49:13 1999
++++ latex2html/cweb2html/makemake.pl	Fri Sep  3 20:50:50 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ ################################################################################
+ # Copyright 22.2.98 by Jens Lippmann (lippmann@cdc.informatik.tu-darmstadt.de)
+diff -urN latex2html.orig/docs/appendix.tex latex2html/docs/appendix.tex
+--- latex2html.orig/docs/appendix.tex	Fri Sep  3 20:49:13 1999
++++ latex2html/docs/appendix.tex	Fri Sep  3 20:51:43 1999
+@@ -103,7 +103,7 @@
+ and  \fn{install-test}. In this case change the first line in each of these
+ programs from
+ \begin{verbatim}
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ \end{verbatim}
+ 
+ \emph{to}
+@@ -120,7 +120,7 @@
+ 
+ Check the first line of the program.
+ The path you see there must point to Perl!
+-If you see eg. \verb|#!/usr/local/bin/perl|, type
++If you see eg. \verb|#!/usr/bin/perl|, type
+ \begin{verbatim}
+    which perl
+ \end{verbatim}
+diff -urN latex2html.orig/docs/problems.tex latex2html/docs/problems.tex
+--- latex2html.orig/docs/problems.tex	Fri Sep  3 20:49:13 1999
++++ latex2html/docs/problems.tex	Fri Sep  3 20:51:56 1999
+@@ -100,7 +100,7 @@
+ \begin{small}
+ %end{latexonly}
+ \begin{verbatim}
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ \end{verbatim}
+ %begin{latexonly}
+ \end{small}%
+diff -urN latex2html.orig/docs/support.tex latex2html/docs/support.tex
+--- latex2html.orig/docs/support.tex	Fri Sep  3 20:49:13 1999
++++ latex2html/docs/support.tex	Fri Sep  3 20:52:08 1999
+@@ -395,7 +395,7 @@
+ %begin{latexonly}
+ \begin{small}
+ %end{latexonly}
+-\verb|#!/usr/local/bin/perl | 
++\verb|#!/usr/bin/perl | 
+ %begin{latexonly}
+ \end{small}
+ %end{latexonly}
+diff -urN latex2html.orig/install-test latex2html/install-test
+--- latex2html.orig/install-test	Fri Sep  3 20:49:13 1999
++++ latex2html/install-test	Fri Sep  3 20:52:42 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # $Id$
+ # LaTeX2HTML Version 98.2 : install-test
+diff -urN latex2html.orig/latex2html latex2html/latex2html
+--- latex2html.orig/latex2html	Fri Sep  3 20:49:13 1999
++++ latex2html/latex2html	Fri Sep  3 20:52:58 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 'di';
+ 'ig00';
+ 
+diff -urN latex2html.orig/latex2html.config latex2html/latex2html.config
+--- latex2html.orig/latex2html.config	Fri Sep  3 20:49:13 1999
++++ latex2html/latex2html.config	Fri Sep  3 20:53:10 1999
+@@ -8,7 +8,7 @@
+ # $PERL='g:/usr/bin/perl_.exe';
+ #
+ # On a unix system it may be best left empty, or set as in:
+-# $PERL='/usr/local/bin/perl';
++# $PERL='/usr/bin/perl';
+ #
+ $PERL='';
+ 
+diff -urN latex2html.orig/makeseg/makeseg latex2html/makeseg/makeseg
+--- latex2html.orig/makeseg/makeseg	Fri Sep  3 20:49:14 1999
++++ latex2html/makeseg/makeseg	Fri Sep  3 20:53:39 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl  
++#!/usr/bin/perl  
+ 
+ # Check options and load configuration files
+ &init;
+diff -urN latex2html.orig/ps2img-n latex2html/ps2img-n
+--- latex2html.orig/ps2img-n	Fri Sep  3 20:49:13 1999
++++ latex2html/ps2img-n	Fri Sep  3 20:54:11 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # This variable can be set manually or by the installation script
+ # to point to the DIRECTORY where the latex2html files can be found.
+diff -urN latex2html.orig/pstoimg latex2html/pstoimg
+--- latex2html.orig/pstoimg	Fri Sep  3 20:49:13 1999
++++ latex2html/pstoimg	Fri Sep  3 20:54:21 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # This variable can be set manually or by the installation script
+ # to point to the DIRECTORY where the latex2html files can be found.
+diff -urN latex2html.orig/pstoimg_nopipes latex2html/pstoimg_nopipes
+--- latex2html.orig/pstoimg_nopipes	Fri Sep  3 20:49:13 1999
++++ latex2html/pstoimg_nopipes	Fri Sep  3 20:54:29 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # This variable can be set manually or by the installation script
+ # to point to the DIRECTORY where the latex2html files can be found.
+diff -urN latex2html.orig/texexpand latex2html/texexpand
+--- latex2html.orig/texexpand	Fri Sep  3 20:49:13 1999
++++ latex2html/texexpand	Fri Sep  3 20:54:54 1999
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # $Id$
+ #
