@@ -3,13 +3,16 @@ Summary:	konwerter z latex'a do html'a
 Name:		latex2html
 Version:	99.2alpha13
 Release:	1
+Copyright:	GPL
 Group:		Applications/Publishing/TeX
 Group(pl):	Aplikacje/Publikowanie/TeX
 Source0:	http://saftsack.fs.uni-bayreuth.de/~latex2ht/%{name}-%{version}.tar.gz
 Patch0:		latex2html-perl.patch
 Patch1:         latex2html-tmp.patch
-Copyright:	GPL
 URL:		http://www.xray.mpe.mpg.de/mailing-lists/latex2html/
+BuildRequires:	perl
+BuildRequires:	tetex-latex
+BuildRequires:	tetex-dvips
 Requires:	perl >= 5.004
 Requires:	ghostscript >= 4.03
 Requires:       tetex-latex >= 0.4
@@ -19,9 +22,8 @@ Requires:       giftrans
 Requires:       libgr-progs >= 2.0.13
 BuildRoot:	/tmp/%{name}-%{version}-root
 BuildArch:	noarch
-BuildRequires:	perl
-BuildRequires:	tetex-latex
-BuildRequires:	tetex-dvips
+
+%define		_libdir		%{_datadir}/%{name}
 
 %description
 Elaborate perl program to convert latex documents to html, using LaTeX
@@ -45,7 +47,6 @@ Generuje strony html oraz odpowiednie obrazki.
 	--enable-gif \
 	--enable-eps \
 	--enable-images \
-	--libdir=%{_datadir}/%{name} \
 	--with-rgb=%{_prefix}/X11R6/lib/X11/rgb.txt \
 	--with-texpath=%{_datadir}/texmf/tex/latex/%{name} \
 	--with-iconpath=/icons/l2h/
@@ -74,10 +75,12 @@ cat << EOF >> l2hcfg.pm
 EOF
 
 make install 
-install -m644	l2hcfg.pm.orig		$RPM_BUILD_ROOT%{_datadir}/%{name}/l2hcfg.pm
-ln -s		%{_datadir}/%{name}/cweb2html/cweb2html	$RPM_BUILD_ROOT%{_bindir}/cweb2html
-ln -s		%{_datadir}/%{name}/icons		$RPM_BUILD_ROOT/home/httpd/icons/l2h
-rm -rf		$RPM_BUILD_ROOT%{_datadir}/%{name}/{docs,example,foilhtml/foilhtml.log}
+install l2hcfg.pm.orig		$RPM_BUILD_ROOT%{_datadir}/%{name}/l2hcfg.pm
+ln -s	%{_datadir}/%{name}/cweb2html/cweb2html	$RPM_BUILD_ROOT%{_bindir}/cweb2html
+ln -s	%{_datadir}/%{name}/icons		$RPM_BUILD_ROOT/home/httpd/icons/l2h
+rm -rf	$RPM_BUILD_ROOT%{_datadir}/%{name}/{docs,example,foilhtml/foilhtml.log}
+
+gzip -9nf FAQ README README.dvips dot.latex2html-init
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,7 +92,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc FAQ README README.dvips dot.latex2html-init
+%doc *gz
 # FIXME
 # %doc docs/manual/*.{gif,html,css}
 %attr(-,  root,root) %{_datadir}/%{name}
