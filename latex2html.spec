@@ -109,7 +109,3 @@ fi
 %attr(755,root,root) /usr/share/latex2html/texexpand
 %attr(755,root,root) /usr/bin/latex2html
 %attr(644,root,root) /usr/lib/texmf/texmf/tex/latex/latex2html/*
-
-%changelog
-* Thu Feb 10 1999 Arkadiusz Mi¶kieiwcz <misiek@pld.org.pl>
- - initial PLD release
