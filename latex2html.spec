@@ -73,7 +73,7 @@ TEXINPUTS="../:../texinputs:$TEXINPUTS"; export TEXINPUTS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/home/httpd/icons
+install -d $RPM_BUILD_ROOT/home/services/httpd/icons
 
 cp -f cfgcache.pm cfgcache.pm.orig
 cat << EOF >> cfgcache.pm
@@ -87,7 +87,7 @@ EOF
 %{__make} install
 install  cfgcache.pm.orig $RPM_BUILD_ROOT%{_libdir}/cfgcache.pm
 ln -sf	%{_libdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
-ln -sf	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
+ln -sf	%{_libdir}/icons $RPM_BUILD_ROOT/home/services/httpd/icons/l2h
 
 rm -rf	$RPM_BUILD_ROOT%{_libdir}/{docs,example,foilhtml/foilhtml.log}
 
@@ -108,5 +108,5 @@ fi
 # FIXME
 # %doc docs/manual/*.{gif,html,css}
 %attr(-,  root,root) %{_libdir}
-%attr(755,root,root) /home/httpd/icons/l2h
+%attr(755,root,root) /home/services/httpd/icons/l2h
 %attr(755,root,root) %{_bindir}/*
