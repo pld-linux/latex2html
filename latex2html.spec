@@ -1,14 +1,17 @@
-Summary:	latex to html translator
-Summary:	konwerter z latex'a do html'a
+Summary:	LaTeX to html translator
+Summary(pl):	Konwerter z LaTeX-a do HTML
 Name:		latex2html
 Version:	99.2beta8
 Release:	1
 License:	GPL
 Group:		Applications/Publishing/TeX
+Group(de):	Applikationen/Publizieren/TeX
+Group(es):	Aplicaciones/Editoración/TeX
 Group(pl):	Aplikacje/Publikowanie/TeX
+Group(pt_BR):	Aplicações/Editoração/TeX
 Source0:	http://www.ctan.org/tex-archive/support/%{name}/%{name}-%{version}.tar.gz
-Patch0:		latex2html-perl.patch
-Patch1:		latex2html-tmp.patch
+Patch0:		%{name}-perl.patch
+Patch1:		%{name}-tmp.patch
 URL:		http://www.xray.mpe.mpg.de/mailing-lists/latex2html/
 BuildRequires:	perl
 BuildRequires:	tetex-latex
@@ -76,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/home/httpd/icons
 
-cp cfgcache.pm cfgcache.pm.orig
+cp -f cfgcache.pm cfgcache.pm.orig
 cat << EOF >> cfgcache.pm
 
 \$cfg{'BINDIR'} = q'$RPM_BUILD_ROOT%{_bindir}';
@@ -87,8 +90,8 @@ EOF
 
 %{__make} install 
 install  cfgcache.pm.orig $RPM_BUILD_ROOT%{_libdir}/cfgcache.pm
-ln -s	%{_libdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
-ln -s	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
+ln -sf	%{_libdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
+ln -sf	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
 
 rm -rf	$RPM_BUILD_ROOT%{_libdir}/{docs,example,foilhtml/foilhtml.log}
 
@@ -99,10 +102,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 if [ -x %{_bindir}/texhash ]; then
-%{_bindir}/texhash
+	%{_bindir}/texhash
 fi
 if [ -x %{_bindir}/mktexlsr ]; then
-%{_bindir}/mktexlsr
+	%{_bindir}/mktexlsr
 fi
 
 %files
