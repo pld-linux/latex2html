@@ -1,0 +1,11 @@
+--- latex2html-2002-1/config/config.pl.orig	Sun Jan 19 11:42:47 2003
++++ latex2html-2002-1/config/config.pl	Sun Jan 19 11:45:45 2003
+@@ -1130,7 +1130,7 @@
+               push(@right_paths,L2hos->path2os($testpath));
+               $gs_lib = 1;
+             }
+-            $testpath .= "${dd}fonts" unless($testpath =~ /\Q$dd\Efonts$/i);
++            $testpath .= "${dd}fonts" unless($testpath =~ /\Q$dd\Efonts(\/.*)?$/i);
+             if(!$gs_fonts && -d $testpath) {
+               push(@right_paths,L2hos->path2os($testpath));
+               $gs_fonts = 1;
