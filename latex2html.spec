@@ -3,23 +3,23 @@ Summary:	konwerter z latex'a do html'a
 Name:		latex2html
 Version:	99.2alpha13
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Applications/Publishing/TeX
 Group(pl):	Aplikacje/Publikowanie/TeX
 Source0:	http://saftsack.fs.uni-bayreuth.de/~latex2ht/%{name}-%{version}.tar.gz
 Patch0:		latex2html-perl.patch
-Patch1:         latex2html-tmp.patch
+Patch1:		latex2html-tmp.patch
 URL:		http://www.xray.mpe.mpg.de/mailing-lists/latex2html/
 BuildRequires:	perl
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
 Requires:	perl >= 5.004
 Requires:	ghostscript >= 4.03
-Requires:       tetex-latex >= 0.4
-Requires:       tetex-dvips >= 0.4
-Requires:       ghostscript >= 4.03
-Requires:       giftrans
-Requires:       libgr-progs >= 2.0.13
+Requires:	tetex-latex >= 0.4
+Requires:	tetex-dvips >= 0.4
+Requires:	ghostscript >= 4.03
+Requires:	giftrans
+Requires:	libgr-progs >= 2.0.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildArch:	noarch
 
@@ -70,15 +70,16 @@ cp l2hcfg.pm l2hcfg.pm.orig
 cat << EOF >> l2hcfg.pm
 
 \$cfg{'BINDIR'} = q'$RPM_BUILD_ROOT%{_bindir}';
-\$cfg{'LIBDIR'} = q'$RPM_BUILD_ROOT%{_datadir}/%{name}';
+\$cfg{'LIBDIR'} = q'$RPM_BUILD_ROOT%{_libdir}';
 
 EOF
 
 make install 
-install l2hcfg.pm.orig		$RPM_BUILD_ROOT%{_datadir}/%{name}/l2hcfg.pm
-ln -s	%{_datadir}/%{name}/cweb2html/cweb2html	$RPM_BUILD_ROOT%{_bindir}/cweb2html
-ln -s	%{_datadir}/%{name}/icons		$RPM_BUILD_ROOT/home/httpd/icons/l2h
-rm -rf	$RPM_BUILD_ROOT%{_datadir}/%{name}/{docs,example,foilhtml/foilhtml.log}
+install l2hcfg.pm.orig $RPM_BUILD_ROOT%{_libdir}/l2hcfg.pm
+ln -s	%{_libdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
+ln -s	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
+
+rm -rf	$RPM_BUILD_ROOT%{_libdir}/{docs,example,foilhtml/foilhtml.log}
 
 gzip -9nf FAQ README README.dvips dot.latex2html-init
 
@@ -95,6 +96,6 @@ fi
 %doc *gz
 # FIXME
 # %doc docs/manual/*.{gif,html,css}
-%attr(-,  root,root) %{_datadir}/%{name}
+%attr(-,  root,root) %{_libdir}
 %attr(755,root,root) /home/httpd/icons/l2h
 %attr(755,root,root) %{_bindir}/*
