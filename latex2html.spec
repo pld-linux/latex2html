@@ -19,6 +19,8 @@ BuildRequires:	tetex-dvips
 BuildRequires:	netpbm-devel
 BuildRequires:	netpbm-progs
 BuildRequires:	giftrans
+BuildRequires:	automake
+BuildRequires:	autoconf
 Requires:	perl >= 5.004
 Requires:	ghostscript >= 4.03
 Requires:	tetex-latex >= 0.4
@@ -46,6 +48,8 @@ Generuje strony html oraz odpowiednie obrazki.
 
 %build
 GS_LIB=.:%{_datadir}/ghostscript/lib:%{_datadir}/fonts/type1; export GS_LIB
+aclocal
+autoconf
 %configure \
 	--enable-images \
 	--enable-pk \
