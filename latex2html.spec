@@ -12,6 +12,7 @@ Release:	2
 License:	GPL
 Group:		Applications/Publishing/TeX
 Source0:	http://www.ctan.org/tex-archive/support/%{name}/%{name}-%{version}-%{subv}.tar.gz
+# Source0-md5:	e6a39c6ca0580b4809b17a486871dd56
 Patch0:		%{name}-perl.patch
 Patch1:		%{name}-tmp.patch
 Patch2:		%{name}-gslib.patch
