@@ -91,8 +91,6 @@ ln -sf	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
 
 rm -rf	$RPM_BUILD_ROOT%{_libdir}/{docs,example,foilhtml/foilhtml.log}
 
-gzip -9nf BUGS FAQ LICENSE README TODO
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -106,7 +104,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *gz
+%doc BUGS FAQ LICENSE README TODO
 # FIXME
 # %doc docs/manual/*.{gif,html,css}
 %attr(-,  root,root) %{_libdir}
