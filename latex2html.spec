@@ -15,9 +15,9 @@ Requires:	perl >= 5.003
 Requires:	ghostscript >= 4.03
 BuildRoot:	/tmp/%{name}-%{version}-root
 BuildArch:	noarch
-BuildPrereq:	perl
-BuildPrereq:	tetex-latex
-BuildPrereq:	tetex-dvips
+BuildRequires:	perl
+BuildRequires:	tetex-latex
+BuildRequires:	tetex-dvips
 
 %description
 latex to html translator
