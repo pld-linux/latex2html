@@ -51,7 +51,7 @@ Generuje strony html oraz odpowiednie obrazki.
 	--with-texpath=%{_datadir}/texmf/tex/latex/%{name} \
 	--with-iconpath=/icons/l2h/
 
-make
+%{__make}
 
 # build foilhtml modules
 cd foilhtml && latex foilhtml.ins && cd ..
