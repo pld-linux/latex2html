@@ -38,7 +38,7 @@ to process images and equations.
 Program w perlu do konwertowania dokumentów LaTeXa do formatu HTML.
 Generuje strony html oraz odpowiednie obrazki.
 
-%prep 
+%prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
@@ -80,11 +80,11 @@ cat << EOF >> cfgcache.pm
 
 \$cfg{'BINDIR'} = q'$RPM_BUILD_ROOT%{_bindir}';
 \$cfg{'LIBDIR'} = q'$RPM_BUILD_ROOT%{_libdir}';
-\$cfg{'TEXPATH'} = q'$RPM_BUILD_ROOT%{_datadir}/texmf/tex/latex/latex2html';      
+\$cfg{'TEXPATH'} = q'$RPM_BUILD_ROOT%{_datadir}/texmf/tex/latex/latex2html';
 
 EOF
 
-%{__make} install 
+%{__make} install
 install  cfgcache.pm.orig $RPM_BUILD_ROOT%{_libdir}/cfgcache.pm
 ln -sf	%{_libdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
 ln -sf	%{_libdir}/icons $RPM_BUILD_ROOT/home/httpd/icons/l2h
