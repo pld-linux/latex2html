@@ -3,16 +3,16 @@
 Summary:	latex to html translator
 Summary:	konwerter z latex'a do html'a
 Name:		latex2html
-Version:	99.1
+Version:	99.2alpha12
 Release:	1
 Group:		Applications/Publishing/TeX
 Group(pl):	Aplikacje/Publikowanie/TeX
-Source0:	http://ctan.tug.org/ctan/tex-archive/support/latex2html/%{name}-%{version}.tar.gz
+Source0:	http://saftsack.fs.uni-bayreuth.de/~latex2ht/%{name}-%{version}.tar.gz
 Source1:	replace-cwd
 Patch0:		latex2html-perl.patch
 Patch1:		latex2html-paths.patch
 Copyright:	unknown
-URL:		http://www-dsed.llnl.gov/files/programs/unix/latex2html/
+URL:		http://www.xray.mpe.mpg.de/mailing-lists/latex2html/
 Requires:	perl >= 5.004
 Requires:	ghostscript >= 4.03
 Requires:       tetex-latex >= 0.4
