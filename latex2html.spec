@@ -24,6 +24,7 @@ BuildRequires:	perl >= 5.004
 BuildRequires:	rpm-perlprov
 %if %{!?_without_tex:1}0
 BuildRequires:	tetex-dvips
+BuildRequires:	tetex-fonts-ams
 BuildRequires:	tetex-format-latex
 BuildRequires:	tetex-makeindex
 %endif
