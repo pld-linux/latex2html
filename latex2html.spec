@@ -37,7 +37,7 @@ Generuje strony html oraz odpowiednie obrazki.
 %define l2hdir  %{_datadir}/texmf/tex/latex/%{name}
 
 %prep 
-%setup -q -n %{name}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 
