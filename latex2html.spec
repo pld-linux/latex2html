@@ -1,7 +1,7 @@
 Summary:	latex to html translator
 Summary:	konwerter z latex'a do html'a
 Name:		latex2html
-Version:	99.2alpha12
+Version:	99.2alpha13
 Release:	1
 Group:		Applications/Publishing/TeX
 Group(pl):	Aplikacje/Publikowanie/TeX
