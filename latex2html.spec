@@ -16,6 +16,7 @@ BuildRequires:	tetex-dvips
 BuildRequires:	ghostscript
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
+BuildRequires:	netpbm-devel
 BuildRequires:	netpbm-progs
 BuildRequires:	giftrans
 Requires:	perl >= 5.004
