@@ -2,7 +2,7 @@ Summary:	LaTeX to html translator
 Summary(pl):	Konwerter z LaTeX-a do HTML
 Name:		latex2html
 Version:	99.2beta8
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Publishing/TeX
 Source0:	http://www.ctan.org/tex-archive/support/%{name}/%{name}-%{version}.tar.gz
