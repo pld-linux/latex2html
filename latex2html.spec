@@ -42,11 +42,11 @@ BuildArch:	noarch
 %define		_shlibdir	%{_datadir}/%{name}
 
 %description
-Elaborate perl program to convert latex documents to html, using LaTeX
+Elaborate Perl program to convert latex documents to html, using LaTeX
 to process images and equations.
 
 %description -l pl
-Program w perlu do konwertowania dokumentów LaTeXa do formatu HTML.
+Program w Perlu do konwertowania dokumentów LaTeXa do formatu HTML.
 Generuje strony html oraz odpowiednie obrazki.
 
 %prep
