@@ -8,15 +8,15 @@ Summary(pl):	Konwerter z LaTeXa do HTML
 Name:		latex2html
 Version:	2002
 %define	subv	2-1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Publishing/TeX
-Source0:	http://www.ctan.org/tex-archive/support/%{name}/%{name}-%{version}-%{subv}.tar.gz
+Source0:	http://www.ctan.org/tex-archive/support/latex2html/%{name}-%{version}-%{subv}.tar.gz
 # Source0-md5:	37488919ac4fd3475d389ddfdb0aea02
 Patch0:		%{name}-perl.patch
 Patch1:		%{name}-tmp.patch
 Patch2:		%{name}-gslib.patch
-URL:		http://www.xray.mpe.mpg.de/mailing-lists/latex2html/
+URL:		http://www.latex2html.org/
 BuildRequires:	ghostscript
 BuildRequires:	giftrans
 BuildRequires:	netpbm-devel
@@ -34,9 +34,9 @@ Requires:	giftrans
 Requires:	netpbm-progs
 Requires:	%{__perl}
 Requires:	tetex-dvips >= 0.4
-Requires:	tetex-latex >= 0.4
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Requires:	tetex-format-latex >= 0.4
 BuildArch:	noarch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libdir		%{_datadir}/%{name}
 %define		_shlibdir	%{_datadir}/%{name}
