@@ -16,6 +16,8 @@ Source0:	http://www.ctan.org/tex-archive/support/latex2html/%{name}-%{version}-%
 Patch0:		%{name}-perl.patch
 Patch1:		%{name}-tmp.patch
 Patch2:		%{name}-gslib.patch
+Patch3:		%{name}-extract-major-version.patch
+Patch4:		%{name}-convert-length.patch
 URL:		http://www.latex2html.org/
 BuildRequires:	ghostscript
 BuildRequires:	giftrans
@@ -54,6 +56,8 @@ Generuje strony html oraz odpowiednie obrazki.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
@@ -69,7 +73,7 @@ GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
 	--enable-wrapper \
 	--with-perl=%{__perl} \
 	--with-gs=/usr/bin/gs \
-	--with-rgb=/usr/X11R6/lib/X11/rgb.txt \
+	--with-rgb=%{_datadir}/X11/rgb.txt \
 	--with-texpath=/usr/share/texmf/tex/latex/%{name} \
 	--with-iconpath=/icons/l2h
 
