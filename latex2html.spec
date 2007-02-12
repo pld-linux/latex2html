@@ -4,7 +4,7 @@
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	LaTeX to HTML translator
-Summary(pl):	Konwerter z LaTeXa do HTML
+Summary(pl.UTF-8):   Konwerter z LaTeXa do HTML
 Name:		latex2html
 Version:	2002
 %define	subv	2-1
@@ -47,8 +47,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Elaborate Perl program to convert latex documents to html, using LaTeX
 to process images and equations.
 
-%description -l pl
-Program w Perlu do konwertowania dokumentów LaTeXa do formatu HTML.
+%description -l pl.UTF-8
+Program w Perlu do konwertowania dokumentÃ³w LaTeXa do formatu HTML.
 Generuje strony html oraz odpowiednie obrazki.
 
 %prep
