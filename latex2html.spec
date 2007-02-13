@@ -4,7 +4,7 @@
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	LaTeX to HTML translator
-Summary(pl.UTF-8):   Konwerter z LaTeXa do HTML
+Summary(pl.UTF-8):	Konwerter z LaTeXa do HTML
 Name:		latex2html
 Version:	2002
 %define	subv	2-1
