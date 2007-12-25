@@ -1,6 +1,9 @@
+# 
+# TODO:
+# - fix `--with tex' build
 #
 # Conditional build:
-%bcond_without	tex	# don't build documentation using LaTeX
+%bcond_with	tex	# try to build documentation using LaTeX
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	LaTeX to HTML translator
@@ -8,7 +11,7 @@ Summary(pl.UTF-8):	Konwerter z LaTeXa do HTML
 Name:		latex2html
 Version:	2002
 %define	subv	2-1
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Publishing/TeX
 Source0:	http://www.ctan.org/tex-archive/support/latex2html/%{name}-%{version}-%{subv}.tar.gz
@@ -80,16 +83,16 @@ GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
 %{__make}
 
 %if %{with tex}
-# build foilhtml modules
-cd foilhtml
-latex foilhtml.ins
-cd ..
-
-# build documentation
-TEXINPUTS="../:../texinputs:$TEXINPUTS"; export TEXINPUTS
-%{__make} -C docs manual.dvi
-%{__make} -C docs manual.dvi
-%{__make} -C docs manual.ps
+	# build foilhtml modules
+	cd foilhtml
+	latex foilhtml.ins
+	cd ..
+	
+	# build documentation
+	TEXINPUTS="../:../texinputs:$TEXINPUTS"; export TEXINPUTS
+	%{__make} -j1 -C docs manual.dvi
+	%{__make} -j1 -C docs manual.dvi
+	%{__make} -j1 -C docs manual.ps
 %endif
 
 %install
