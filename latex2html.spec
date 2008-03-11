@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Konwerter z LaTeXa do HTML
 Name:		latex2html
 Version:	2002
 %define	subv	2-1
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/Publishing/TeX
 Source0:	http://www.ctan.org/tex-archive/support/latex2html/%{name}-%{version}-%{subv}.tar.gz
@@ -34,6 +34,7 @@ BuildRequires:	tetex-fonts-ams
 BuildRequires:	tetex-format-latex
 BuildRequires:	tetex-makeindex
 %endif
+Requires:	apache-icons
 Requires:	ghostscript >= 4.03
 Requires:	giftrans
 Requires:	netpbm-progs
@@ -97,13 +98,13 @@ GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/home/services/httpd/icons
+install -d $RPM_BUILD_ROOT/%{_datadir}/apache-icons
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 ln -sf	%{_shlibdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
-ln -sf	%{_shlibdir}/icons $RPM_BUILD_ROOT/home/services/httpd/icons/l2h
+ln -sf	%{_shlibdir}/icons $RPM_BUILD_ROOT%{_datadir}/apache-icons/l2h
 
 rm -rf	$RPM_BUILD_ROOT%{_shlibdir}/{docs,example,foilhtml/foilhtml.log}
 
@@ -129,4 +130,4 @@ fi
 %{_shlibdir}/cweb2html/[!c]*
 %{_shlibdir}/cweb2html/cweb.*
 %attr(755,root,root) %{_shlibdir}/cweb2html/cweb2html
-/home/services/httpd/icons/l2h
+%{_datadir}/apache-icons/l2h
