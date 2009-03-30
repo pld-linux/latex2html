@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Konwerter z LaTeXa do HTML
 Name:		latex2html
 Version:	2002
 %define	subv	2-1
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/Publishing/TeX
 Source0:	http://www.ctan.org/tex-archive/support/latex2html/%{name}-%{version}-%{subv}.tar.gz
@@ -39,8 +39,8 @@ Requires:	ghostscript >= 4.03
 Requires:	giftrans
 Requires:	netpbm-progs
 Requires:	%{__perl}
-Requires:	tetex-dvips >= 0.4
-Requires:	tetex-format-latex >= 0.4
+Requires:	texlive-dvips 
+Requires:	texlive-latex
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
