@@ -9,18 +9,18 @@
 Summary:	LaTeX to HTML translator
 Summary(pl.UTF-8):	Konwerter z LaTeXa do HTML
 Name:		latex2html
-Version:	2002
-%define	subv	2-1
-Release:	8
-License:	GPL
+Version:	2008
+Release:	1
+License:	GPL v2
 Group:		Applications/Publishing/TeX
-Source0:	http://www.ctan.org/tex-archive/support/latex2html/%{name}-%{version}-%{subv}.tar.gz
-# Source0-md5:	37488919ac4fd3475d389ddfdb0aea02
+Source0:	http://www.latex2html.org/~latex2ht/current/%{name}-%{version}.tar.gz
+# Source0-md5:	275ab6cfa8ca9328446b7f40d8dc302e
 Patch0:		%{name}-perl.patch
 Patch1:		%{name}-tmp.patch
 Patch2:		%{name}-gslib.patch
 Patch3:		%{name}-extract-major-version.patch
 Patch4:		%{name}-convert-length.patch
+Patch5:		%{name}-destdir.patch
 URL:		http://www.latex2html.org/
 BuildRequires:	ghostscript
 BuildRequires:	giftrans
@@ -29,10 +29,10 @@ BuildRequires:	netpbm-progs
 BuildRequires:	%{__perl}
 BuildRequires:	rpm-perlprov
 %if %{with tex}
-BuildRequires:	tetex-dvips
-BuildRequires:	tetex-fonts-ams
-BuildRequires:	tetex-format-latex
-BuildRequires:	tetex-makeindex
+BuildRequires:	texlive-dvips
+BuildRequires:	texlive-fonts-ams
+BuildRequires:	texlive-latex
+BuildRequires:	texlive-makeindex
 %endif
 Requires:	apache-icons
 Requires:	ghostscript >= 4.03
@@ -47,6 +47,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_libdir		%{_datadir}/%{name}
 %define		_shlibdir	%{_datadir}/%{name}
 
+%define		texmfdir	/usr/share/texmf
+
 %description
 Elaborate Perl program to convert latex documents to html, using LaTeX
 to process images and equations.
@@ -56,12 +58,13 @@ Program w Perlu do konwertowania dokumentów LaTeXa do formatu HTML.
 Generuje strony html oraz odpowiednie obrazki.
 
 %prep
-%setup -q -n %{name}-%{version}-%{subv}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
@@ -78,7 +81,7 @@ GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
 	--with-perl=%{__perl} \
 	--with-gs=/usr/bin/gs \
 	--with-rgb=%{_datadir}/X11/rgb.txt \
-	--with-texpath=/usr/share/texmf/tex/latex/%{name} \
+	--with-texpath=%{texmfdir}/tex/latex/%{name} \
 	--with-iconpath=/icons/l2h
 
 %{__make}
@@ -98,7 +101,7 @@ GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_datadir}/apache-icons
+install -d $RPM_BUILD_ROOT%{_datadir}/apache-icons
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -106,7 +109,7 @@ install -d $RPM_BUILD_ROOT/%{_datadir}/apache-icons
 ln -sf	%{_shlibdir}/cweb2html/cweb2html $RPM_BUILD_ROOT%{_bindir}/cweb2html
 ln -sf	%{_shlibdir}/icons $RPM_BUILD_ROOT%{_datadir}/apache-icons/l2h
 
-rm -rf	$RPM_BUILD_ROOT%{_shlibdir}/{docs,example,foilhtml/foilhtml.log}
+%{__rm} -r $RPM_BUILD_ROOT%{_shlibdir}/{docs,example}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -122,7 +125,10 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc BUGS FAQ LICENSE README TODO %{?with_tex:docs/manual.ps}
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/cweb2html
+%attr(755,root,root) %{_bindir}/latex2html
+%attr(755,root,root) %{_bindir}/pstoimg
+%attr(755,root,root) %{_bindir}/texexpand
 %dir %{_shlibdir}
 %{_shlibdir}/[!c]*
 %{_shlibdir}/c[!w]*
@@ -130,4 +136,5 @@ fi
 %{_shlibdir}/cweb2html/[!c]*
 %{_shlibdir}/cweb2html/cweb.*
 %attr(755,root,root) %{_shlibdir}/cweb2html/cweb2html
+%{texmfdir}/tex/latex/%{name}
 %{_datadir}/apache-icons/l2h

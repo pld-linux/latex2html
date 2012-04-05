@@ -1,0 +1,38 @@
+--- latex2html-2008/config/install.pl.orig	2002-11-29 12:49:01.000000000 +0100
++++ latex2html-2008/config/install.pl	2012-04-05 19:04:13.629561822 +0200
+@@ -372,14 +372,16 @@
+ 
+ if($cfg{TEXPATH}) {
+   print "\nNote: trying to install LaTeX2HTML style files in TeX directory tree\n     ($cfg{TEXPATH})\n";
+-  unless(mkpath($cfg{TEXPATH})) {
++  my $dest = $cfg{TEXPATH};
++  $dest = $ENV{'DESTDIR'}.$dest if($ENV{'DESTDIR'});
++
++  unless(mkpath($dest)) {
+   #my $testpath = $cfg{TEXPATH}; # to strip (latex2)html
+   #$testpath =~ s/[$dd$dd][^$dd$dd]*$//;
+   #if((-d $cfg{TEXPATH} && !-w _) || (-d $testpath && !-w _)) {
+     print STDERR "\nError: Cannot install LaTeX2HTML style files in $cfg{TEXPATH}\n";
+   } else {
+     my $dir = 'texinputs';
+-    my $dest = $cfg{TEXPATH};
+     unless(opendir(DIR,$dir)) {
+       print STDERR qq{Error: Could not read directory "$dir": $!\n};
+     } else {
+#@@ -388,13 +390,13 @@
+#       while(defined($file = readdir(DIR))) {
+#         my $full = "$dir/$file";
+#         next if($file =~ /^\.\.?$/ || !-f $full || !-s _);
+#-        unless(&install_file($full,$cfg{TEXPATH},$FILECHMOD,0)) {
+#+        unless(&install_file($full,$dest,$FILECHMOD,0)) {
+#           $ok = 0;
+#           last;
+@@ -394,7 +396,7 @@
+         }
+       }
+       closedir(DIR);
+-      if($ok && $cfg{MKTEXLSR}) {
++      if($ok && $cfg{MKTEXLSR} && !$ENV{'DESTDIR'}) {
+         print "Info: Running $cfg{MKTEXLSR} to rebuild ls-R database...\n";
+         system($cfg{MKTEXLSR});
+       }
