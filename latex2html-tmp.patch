@@ -40,3 +40,14 @@ diff -urN latex2html-99.2alpha12.orig/config/config.pl latex2html-99.2alpha12/co
  
  # --------------------------------------------------------------------------
  # Hashbang script starts
+--- latex2html-2008/config/config.pl~	2013-12-04 08:56:32.000000000 +0100
++++ latex2html-2008/config/config.pl	2013-12-04 08:57:19.314864264 +0100
+@@ -1795,8 +1795,6 @@
+ my @tmp = ();
+ push(@tmp,$cfg{'TMPSPACE'}) if($cfg{'TMPSPACE'});
+ push(@tmp,$prefs{'TMPSPACE'}) if($prefs{'TMPSPACE'});
+-push(@tmp,$ENV{'TMP'}) if($ENV{'TMP'});
+-push(@tmp,$ENV{'TEMP'}) if($ENV{'TEMP'});
+ if($newcfg{'plat'} =~ /dos|win32/i) {
+   push(@tmp,qw(C:\\TMP C:\\TEMP C:\\WINDOWS\\TEMP C:\\WINNT\\TEMP));
+ }
