@@ -5,7 +5,6 @@
 # Conditional build:
 %bcond_with	tex	# try to build documentation using LaTeX
 #
-%include	/usr/lib/rpm/macros.perl
 Summary:	LaTeX to HTML translator
 Summary(pl.UTF-8):	Konwerter z LaTeXa do HTML
 Name:		latex2html
