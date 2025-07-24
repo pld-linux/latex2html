@@ -8,18 +8,12 @@
 Summary:	LaTeX to HTML translator
 Summary(pl.UTF-8):	Konwerter z LaTeXa do HTML
 Name:		latex2html
-Version:	2008
-Release:	2
+Version:	2025
+Release:	1
 License:	GPL v2
 Group:		Applications/Publishing/TeX
-Source0:	http://www.latex2html.org/~latex2ht/current/%{name}-%{version}.tar.gz
-# Source0-md5:	275ab6cfa8ca9328446b7f40d8dc302e
-Patch0:		%{name}-perl.patch
-Patch1:		%{name}-tmp.patch
-Patch2:		%{name}-gslib.patch
-Patch3:		%{name}-extract-major-version.patch
-Patch4:		%{name}-convert-length.patch
-Patch5:		%{name}-destdir.patch
+Source0:	https://github.com/latex2html/latex2html/archive/refs/tags/v%{version}.tar.gz
+# Source0-md5:	8c0bf887a457a6b3c3d05abf400e638f
 URL:		http://www.latex2html.org/
 BuildRequires:	ghostscript
 BuildRequires:	giftrans
@@ -58,16 +52,10 @@ Generuje strony html oraz odpowiednie obrazki.
 
 %prep
 %setup -q
-%patch -P0 -p1
-%patch -P1 -p1
-%patch -P2 -p1
-%patch -P3 -p1
-%patch -P4 -p1
-%patch -P5 -p1
 
 %build
 GS_LIB=.:/usr/share/ghostscript/lib:/usr/share/fonts/Type1; export GS_LIB
-%configure2_13 \
+%configure \
 	--shlibdir=%{_datadir}/%{name} \
 	--enable-images \
 	--enable-pk \
@@ -123,7 +111,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS FAQ LICENSE README TODO %{?with_tex:docs/manual.ps}
+%doc BUGS FAQ LICENSE README.md TODO %{?with_tex:docs/manual.ps}
 %attr(755,root,root) %{_bindir}/cweb2html
 %attr(755,root,root) %{_bindir}/latex2html
 %attr(755,root,root) %{_bindir}/pstoimg
